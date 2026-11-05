@@ -118,6 +118,15 @@ nav a:hover { color: var(--gold); }
   right: 20%;
   pointer-events: none;
 }
+  /* CINEMATIC PARALLAX */
+.hero {
+  background-position:
+    center,
+    center,
+    calc(50% + var(--move-x, 0px))
+    calc(50% + var(--move-y, 0px));
+  transition: background-position .15s ease-out;
+}
 
 .hero-content {
   position: relative;
@@ -429,6 +438,23 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll(".reveal").forEach(element => {
   observer.observe(element);
 });
+/* MATHAQ MOUSE PARALLAX */
+const hero = document.querySelector(".hero");
+
+if (hero && window.matchMedia("(hover: hover)").matches) {
+  hero.addEventListener("pointermove", (e) => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 18;
+    const y = (e.clientY / window.innerHeight - 0.5) * 18;
+
+    hero.style.setProperty("--move-x", `${x}px`);
+    hero.style.setProperty("--move-y", `${y}px`);
+  });
+
+  hero.addEventListener("pointerleave", () => {
+    hero.style.setProperty("--move-x", "0px");
+    hero.style.setProperty("--move-y", "0px");
+  });
+} 
 </script>
 
 </body>
