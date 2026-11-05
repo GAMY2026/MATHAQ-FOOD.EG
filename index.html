@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مذاق | MATHAQ</title>
+<meta name="description" content="مذاق - تجربة طعام استثنائية">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #100e0c;
+  --gold: #d6a45d;
+  --cream: #f5eadb;
+  --muted: #b4a99d;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--cream);
+  font-family: 'Cairo', sans-serif;
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+
+header {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  z-index: 20;
+  padding: 22px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ffffff16;
+  animation: headerIn 1s ease both;
+}
+
+.logo {
+  font-size: 30px;
+  font-weight: 900;
+  color: var(--gold);
+  letter-spacing: 1px;
+}
+
+.logo span {
+  display: block;
+  font-size: 9px;
+  color: var(--cream);
+  letter-spacing: 5px;
+  text-align: center;
+  margin-top: -8px;
+}
+
+nav {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+nav a {
+  font-size: 13px;
+  color: #eee2d3;
+  transition: .3s;
+}
+
+nav a:hover { color: var(--gold); }
+
+.header-btn {
+  padding: 10px 24px;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  border-radius: 3px;
+  font-size: 13px;
+  transition: .3s;
+}
+
+.header-btn:hover {
+  background: var(--gold);
+  color: #17110b;
+}
+
+.hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: 140px 8% 80px;
+  background:
+    linear-gradient(90deg, #100e0c 5%, #100e0cdd 42%, #100e0c44 100%),
+    linear-gradient(0deg, #100e0c 0%, transparent 35%),
+    url("https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=2000&q=90")
+    center/cover no-repeat;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 550px;
+  height: 550px;
+  background: #d68c3720;
+  filter: blur(110px);
+  border-radius: 50%;
+  top: 15%;
+  right: 20%;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 650px;
+}
+
+.eyebrow {
+  color: var(--gold);
+  font-size: 13px;
+  letter-spacing: 4px;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: reveal 1s .3s forwards;
+}
+
+.hero h1 {
+  font-size: clamp(65px, 10vw, 125px);
+  line-height: 1.2;
+  font-weight: 900;
+  margin-bottom: 12px;
+  animation: titleIn 1s .4s both;
+}
+
+.hero h1 span { color: var(--gold); }
+
+.hero-description {
+  color: #d1c4b5;
+  font-size: 16px;
+  line-height: 2.2;
+  max-width: 490px;
+  margin: 20px 0 30px;
+  animation: reveal 1s .8s both;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  animation: reveal 1s 1s both;
+}
+
+.primary-btn {
+  background: var(--gold);
+  color: #17110b;
+  padding: 15px 35px;
+  font-weight: 800;
+  border-radius: 3px;
+  transition: .35s;
+}
+
+.primary-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 35px #d6a45d40;
+}
+
+.secondary-btn {
+  border: 1px solid #ffffff55;
+  padding: 14px 28px;
+  border-radius: 3px;
+  transition: .3s;
+}
+
+.secondary-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.hero-stamp {
+  position: absolute;
+  left: 9%;
+  bottom: 17%;
+  width: 130px;
+  height: 130px;
+  border: 1px solid #d6a45d80;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--gold);
+  font-size: 12px;
+  line-height: 2;
+  transform: rotate(-12deg);
+  animation: float 5s ease-in-out infinite;
+}
+
+.hero-stamp strong {
+  font-size: 25px;
+  display: block;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  right: 8%;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 3px;
+}
+
+.scroll-indicator::after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 45px;
+  background: var(--gold);
+  margin: 12px auto 0;
+  animation: lineMove 1.5s infinite;
+}
+
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 22px 0;
+  background: var(--gold);
+  color: #17110b;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 3px;
+}
+
+.marquee-track {
+  display: inline-block;
+  animation: marquee 25s linear infinite;
+}
+
+.intro {
+  padding: 110px 8%;
+  text-align: center;
+}
+
+.intro small {
+  color: var(--gold);
+  letter-spacing: 4px;
+}
+
+.intro h2 {
+  font-size: clamp(30px, 5vw, 55px);
+  margin: 18px 0;
+}
+
+.intro h2 span { color: var(--gold); }
+
+.intro p {
+  color: var(--muted);
+  line-height: 2.2;
+  max-width: 650px;
+  margin: auto;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(45px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes reveal {
+  to { opacity: 1; }
+}
+
+@keyframes titleIn {
+  from { opacity: 0; transform: translateY(70px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes headerIn {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0) rotate(-12deg); }
+  50% { transform: translateY(-18px) rotate(-5deg); }
+}
+
+@keyframes lineMove {
+  0% { transform: scaleY(.3); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  100% { transform: scaleY(.3); transform-origin: bottom; }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(50%); }
+}
+
+@media(max-width: 800px) {
+  header { padding: 17px 5%; }
+  nav { display: none; }
+  .hero {
+    min-height: 90vh;
+    padding: 140px 7% 100px;
+    background-position: 60% center;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #100e0c55;
+  }
+  .hero-content { z-index: 3; }
+  .hero-description { font-size: 14px; }
+  .hero-stamp { width: 90px; height: 90px; left: 6%; bottom: 8%; }
+  .hero-stamp strong { font-size: 18px; }
+  .header-btn { padding: 8px 13px; font-size: 11px; }
+}
+
+@media(prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="#" class="logo">مَذَاق<span>M A T H A Q</span></a>
+
+  <nav>
+    <a href="#">الرئيسية</a>
+    <a href="#about">حكايتنا</a>
+    <a href="#menu">قائمة الطعام</a>
+    <a href="#contact">تواصل معنا</a>
+  </nav>
+
+  <a href="#menu" class="header-btn">اكتشف مذاقنا</a>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-content">
+      <div class="eyebrow">A WORLD OF TASTE · EST. 2026</div>
+
+      <h1>حكاية<br><span>كل لقمة</span></h1>
+
+      <p class="hero-description">
+        في مذاق، كل طبق له حكاية، وكل نكهة لها شخصية.
+        اكتشف عالمًا من الأطباق المميزة، حيث يلتقي الشغف
+        بالطعم الذي لا يُنسى.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#menu" class="primary-btn">اكتشف قائمة الطعام ↙</a>
+        <a href="#about" class="secondary-btn">اكتشف حكايتنا</a>
+      </div>
+    </div>
+
+    <div class="hero-stamp">
+      <div>
+        <strong>مَذَاق</strong>
+        TASTE THE<br>EXPERIENCE
+      </div>
+    </div>
+
+    <div class="scroll-indicator">SCROLL TO DISCOVER</div>
+  </section>
+
+  <div class="marquee">
+    <div class="marquee-track">
+      ✦ MATHAQ EXPERIENCE ✦ FOOD MADE WITH PASSION ✦
+      FRESH INGREDIENTS ✦ TASTE THE DIFFERENCE ✦
+      MATHAQ EXPERIENCE ✦ FOOD MADE WITH PASSION ✦
+    </div>
+  </div>
+
+  <section class="intro reveal" id="about">
+    <small>OUR STORY</small>
+    <h2>الطعم مش مجرد <span>أكل</span></h2>
+    <p>
+      إنها تجربة تبدأ من أول نظرة، وتكتمل مع أول لقمة.
+      في مذاق، نهتم بكل تفصيلة لنقدم لك تجربة مختلفة
+      تجمع بين الجودة، الإبداع، ومتعة الطعام.
+    </p>
+  </section>
+
+  <section class="intro reveal" id="menu">
+    <small>COMING NEXT</small>
+    <h2>اكتشف عالم <span>مذاق</span></h2>
+    <p>قريبًا ستجد هنا قائمة أطباقنا وعروضنا المميزة.</p>
+  </section>
+
+  <section class="intro reveal" id="contact">
+    <small>STAY CONNECTED</small>
+    <h2>أهلاً بك في <span>مذاق</span></h2>
+    <p>تجربة طعام تستحق أن تعيشها.</p>
+  </section>
+</main>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll(".reveal").forEach(element => {
+  observer.observe(element);
+});
+</script>
+
+</body>
+</html>
